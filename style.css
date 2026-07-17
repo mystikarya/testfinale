@@ -12,32 +12,37 @@
     font-style: italic;
 }
 
-body{font-family:Arial;background:#1b1433;color:#fff;max-width:900px;margin:auto;padding:20px}
+/* ---------- GENERALE ---------- */
 
+body{
+    font-family: Arial, sans-serif;
+    background:#1b1433;
+    color:#fff;
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
 
-h1,p{
-    font-family: "IMFellItalic", serif;
+h1,
+p{
+    font-family:"IMFellItalic", serif;
 }
 
 h2{
-    font-family: "Times", serif;
+    font-family:"IMFell", serif;
+    font-size:28px;
+    margin-bottom:30px;
+    line-height:1.4;
 }
 
-
 .progress-text{
-    font-family: "IMFellItalic", serif;
-}
-
-button{padding:10px 18px;margin:8px;border-radius:8px;cursor:pointer}
-.answer{display:block;margin:10px 0;padding:12px;border:1px solid #888}
-.selected{background:#ffd966;color:#222}
-.progress-text{
-    font-size:14px;
-    color:#d8c9ff;
-    text-transform:uppercase;
+    font-family:"IMFellItalic", serif;
+    font-size:13px;
     letter-spacing:2px;
-    margin-bottom:12px;
-    opacity:0.8;
+    color:#cfc6ff;
+    margin-bottom:15px;
+    text-transform:uppercase;
+    opacity:.8;
 }
 
 /* ---------- QUIZ ---------- */
@@ -49,148 +54,84 @@ button{padding:10px 18px;margin:8px;border-radius:8px;cursor:pointer}
     text-align:center;
 }
 
-.progress-text{
-    font-size:13px;
-    letter-spacing:2px;
-    color:#cfc6ff;
-    margin-bottom:15px;
-    text-transform:uppercase;
-}
-
-h2{
-    font-size:28px;
-    margin-bottom:30px;
-    line-height:1.4;
-}
-
 /* ---------- RISPOSTE ---------- */
 
 .answer{
-
     display:block;
-
     width:100%;
     max-width:650px;
-
     margin:12px auto;
-
     padding:16px;
-
-    border-radius:12px;
-
     border:1px solid #888;
-
+    border-radius:12px;
     background:#2d2149;
-
-    color:white;
-
+    color:#fff;
     font-size:18px;
-
     text-align:center;
-
     transition:.25s;
 }
 
-.answer:hover{
+/* Hover e risposta selezionata uguali */
 
-    background:#4b3678;
-
-}
-
-.selected{
-
+.answer:hover,
+.answer.selected{
     background:#ffd966;
-
     color:#222;
-
+    border-color:#ffd966;
     font-weight:bold;
-
 }
 
 /* ---------- PULSANTI ---------- */
 
 button{
-
     display:block;
-
     margin:25px auto;
-
     padding:15px 30px;
-
     min-width:220px;
-
     font-size:18px;
-
     border:none;
-
     border-radius:12px;
-
     cursor:pointer;
-
 }
 
 /* ---------- MOBILE ---------- */
 
 @media (max-width:768px){
 
-body{
+    body{
+        padding:15px;
+    }
 
-    padding:15px;
+    h1{
+        font-size:28px;
+    }
 
-}
+    h2{
+        font-size:22px;
+    }
 
-.card{
+    .intro{
+        font-size:16px;
+    }
 
-    padding:20px;
+    .answer{
+        width:100%;
+        font-size:17px;
+        padding:15px;
+    }
 
-}
+    button{
+        width:100%;
+        max-width:320px;
+        font-size:17px;
+    }
 
-h1,
-h2{
-    font-family: "IM Fell English Regular", serif;
-}
+    .info{
+        flex-direction:column;
+    }
 
-.progress-text{
-    font-family: "IM Fell English Italic", serif;
-}
-
-.intro{
-
-    font-size:16px;
-
-}
-
-.answer{
-
-    width:100%;
-
-    font-size:17px;
-
-    padding:15px;
-
-}
-
-button{
-
-    width:100%;
-
-    max-width:320px;
-
-    font-size:17px;
+    .info div{
+        width:100%;
+    }
 
 }
-
-.info{
-
-    flex-direction:column;
-
-}
-
-.info div{
-
-    width:100%;
-
-}
-
-}
-
