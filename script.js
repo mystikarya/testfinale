@@ -123,7 +123,7 @@ function end() {
             </p>
 
             <a href="download/pdf.pdf" download>
-                <button>📜 Scarica il Grimorio</button>
+                <button>📜 Scarica il Certificato</button>
             </a>
         `;
 
