@@ -271,12 +271,34 @@ a button {
 }
 
 @media(max-width:768px) {
+
+      body{
+
+        align-items:flex-start;
+        padding-top:60px;
+
+    }
+
+    #app{
+
+        width:100%;
+
+    }
+
+    .start-screen{
+
+        min-height:auto;
+        justify-content:flex-start;
+        padding-top:40px;
+        }
+
+
     .start-screen h1 {
-        font-size: 84px
+        font-size: 72px
     }
 
     .start-screen p {
-        font-size: 12px
+        font-size: 14px
     }
 
     h2 {
@@ -294,9 +316,9 @@ a button {
     }
 
     #startButton {
-        width: 280px;
+        width: 80px;
         height: 78px;
-        font-size: 24px;
+        font-size: 18px;
         letter-spacing: 8px
     }
 }
