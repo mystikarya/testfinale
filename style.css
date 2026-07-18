@@ -321,4 +321,10 @@ a button {
         font-size: 18px;
         letter-spacing: 8px
     }
+
+    .progress-text {
+    font: 300 10px Arial;
+    color: #CDB8E8;
+    margin-bottom: 12px;
+}
 }
