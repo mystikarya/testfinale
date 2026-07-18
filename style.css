@@ -84,7 +84,7 @@ h1 {
 
 .start-screen h1 {
     font-family: "Nymeria";
-    font-size: 84px;
+    font-size: 100px;
     font-weight: 400;
     color: #FFF7F0;
     margin-bottom: 20px;
@@ -93,7 +93,7 @@ h1 {
 
 .start-screen p {
     font-family: "Maginia";
-    font-size: 14px;
+    font-size: 12px;
     letter-spacing: 2px;
     line-height: 1.25;
     max-width: 760px;
