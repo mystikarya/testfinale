@@ -19,7 +19,7 @@ function startScreen(){
         <h1>Test Finale</h1>
         <p>
             Prenditi il tuo tempo per rispondere!<br>
-            Ogni domanda riguarda un argomento trattato nelle lezioni precedenti.
+            Ogni domanda riguarda un argomento trattato nelle lezioni precedenti.<br>
             Se superi il test, ti verrà rilasciato il Certificato di Stregoneria! ✨
         </p>
         <button id="startButton">INIZIA</button>
