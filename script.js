@@ -3,6 +3,32 @@ let ans = new Array(questions.length).fill(null);
 
 const app = document.getElementById("app");
 
+function startScreen() {
+
+    app.innerHTML = `
+        <div class="start-screen">
+
+            <h1>Test Finale</h1>
+
+            <p>
+                Prenditi il tuo tempo per rispondere!<br>
+                Ogni domanda riguarda un argomento trattato nelle lezioni precedenti.
+                Se superi il test, ti verrà rilasciato il
+                <strong>Certificato di Stregoneria!</strong> ✨
+            </p>
+
+            <button id="startButton">INIZIA</button>
+
+        </div>
+    `;
+
+    document.getElementById("startButton").onclick = () => {
+        i = 0;
+        draw();
+    };
+
+}
+
 function draw() {
 
     if (i >= questions.length) {
@@ -20,9 +46,10 @@ function draw() {
         <h2>${q.question}</h2>
     `;
 
+    // Risposte
     q.answers.forEach((a, n) => {
 
-        let b = document.createElement("button");
+        const b = document.createElement("button");
 
         b.className = "answer";
 
@@ -45,28 +72,7 @@ function draw() {
     const nav = document.createElement("div");
     nav.className = "nav-buttons";
 
-    // Pulsante indietro
-    const prev = document.createElement("button");
-    prev.textContent = "⬅ Indietro";
-
-   if (i === 0) {
-    prev.style.visibility = "hidden";
-    prev.disabled = true;
-}
-
-    prev.onclick = () => {
-
-        if (i > 0) {
-
-            i--;
-
-            draw();
-
-        }
-
-    };
-
-    // Pulsante avanti
+    // Pulsante Avanti
     const next = document.createElement("button");
 
     next.textContent =
@@ -90,6 +96,28 @@ function draw() {
 
     };
 
+    // Pulsante Indietro
+    const prev = document.createElement("button");
+
+    prev.textContent = "⬅ Indietro";
+
+    if (i === 0) {
+        prev.style.visibility = "hidden";
+    }
+
+    prev.onclick = () => {
+
+        if (i > 0) {
+
+            i--;
+
+            draw();
+
+        }
+
+    };
+
+    // Ordine: Avanti sopra, Indietro sotto
     nav.appendChild(next);
     nav.appendChild(prev);
 
@@ -143,7 +171,7 @@ function end() {
                 <b>6 risposte corrette su ${questions.length}</b>.
             </p>
 
-            <button onclick="location.reload()">
+            <br><button onclick="location.reload()">
                 🔄 Ritenta il test
             </button>
         `;
@@ -152,4 +180,4 @@ function end() {
 
 }
 
-draw();
+startScreen();

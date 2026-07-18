@@ -1,136 +1,340 @@
 @font-face {
     font-family: "IMFell";
     src: url("fonts/IMFellEnglish-Regular.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
 }
 
 @font-face {
     font-family: "IMFellItalic";
     src: url("fonts/IMFellEnglish-Italic.ttf") format("truetype");
-    font-weight: normal;
-    font-style: italic;
+}
+@font-face {
+    font-family: "TheSeasons";
+    src: url("fonts/TheSeasons-Reg.otf") format("truetype");
 }
 
-/* ---------- GENERALE ---------- */
+@font-face {
+    font-family: "Cormorant";
+    src: url("fonts/CormorantGaramond.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Cormorant-light";
+    src: url("fonts/CormorantGaramond-Light.ttf") format("truetype");
+}
+
+/* ========================= */
+/* GENERALE */
+/* ========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
 body{
-    font-family: Arial, sans-serif;
-    background:#1b1433;
-    color:#fff;
-    max-width:900px;
-    margin:auto;
-    padding:20px;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+        linear-gradient(rgba(12,8,25,.45),rgba(12,8,25,.65)),
+        url("assets/background.png") center center/cover no-repeat fixed;
+
+    color:#F6F1EB;
+
+    font-family:Arial,sans-serif;
+
+    padding:30px;
+
 }
 
-h1,
-p{
-    font-family:"IMFellItalic", serif;
+#app{
+
+    width:100%;
+
+    max-width:850px;
+
+    text-align:center;
+
+}
+
+/* ========================= */
+/* SCHERMATA INIZIALE */
+/* ========================= */
+
+.start-screen{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:80vh;
+
+}
+
+.start-screen h1{
+
+    font-family:"TheSeasons";
+
+    font-size:84px;
+
+    color:#FFF7F0;
+
+    font-weight:400;
+
+    margin-bottom:40px;
+
+}
+
+.start-screen p{
+
+    font-family:"Cormorant-light";
+
+    font-size:24px;
+
+    line-height:1.2;
+
+    max-width:760px;
+
+    color:#F1E8E2;
+
+}
+
+#startButton{
+
+    margin-top:60px;
+
+    width:320px;
+
+    height:90px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:rgba(180,145,180,.40);
+
+    backdrop-filter:blur(10px);
+
+    color:white;
+
+    font-size:30px;
+
+    letter-spacing:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+#startButton:hover{
+
+    transform:scale(1.04);
+
+    background:rgba(201,166,203,.60);
+
+}
+
+/* ========================= */
+/* QUIZ */
+/* ========================= */
+
+.progress-text{
+
+    font-family:"arial";
+
+    font-size:14px;
+
+    color:#CDB8E8;
+
+    letter-spacing:4px;
+    font-weight: lighter;
+    text-transform: uppercase;
+    margin-bottom:25px;
+
 }
 
 h2{
-    font-family:"IMFell", serif;
-    font-size:28px;
-    margin-bottom:30px;
-    line-height:1.4;
+
+    font-family:"TheSeasons";
+
+    font-size:48px;
+
+    font-weight:400;
+
+    margin-bottom:45px;
+
+    color:#FFF7F0;
+
 }
 
-.progress-text{
-    font-size:13px;
-    letter-spacing:2px;
-    color:#cfc6ff;
-    margin-bottom:15px;
-    text-transform:uppercase;
-    opacity:.8;
-}
-
-/* ---------- QUIZ ---------- */
-
-#app{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-}
-
-/* ---------- RISPOSTE ---------- */
+/* ========================= */
+/* RISPOSTE */
+/* ========================= */
 
 .answer{
-    display:block;
-    width:100%;
-    max-width:650px;
-    margin:12px auto;
-    padding:16px;
-    border:1px solid #888;
-    border-radius:12px;
-    background:#2d2149;
-    color:#fff;
-    font-size:18px;
-    text-align:center;
-    transition:.25s;
-}
 
-/* Hover e risposta selezionata uguali */
+    display:block;
+
+    width:100%;
+
+    max-width:650px;
+
+    margin:18px auto;
+
+    padding:18px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    border-radius:18px;
+
+    color:white;
+
+    font-size:19px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    backdrop-filter:blur(5px);
+
+}
 
 .answer:hover,
 .answer.selected{
-    background:#ffd966;
-    color:#222;
-    border-color:#ffd966;
-    font-weight:bold;
+
+    background:#DFC36A;
+
+    color:#231A0A;
+
+    border-color:#DFC36A;
+
 }
 
-/* ---------- PULSANTI ---------- */
+/* ========================= */
+/* PULSANTI */
+/* ========================= */
+
+.nav-buttons{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:18px;
+
+    margin-top:40px;
+
+}
 
 button{
-    display:block;
-    margin:25px auto;
-    padding:15px 30px;
-    min-width:220px;
-    font-size:18px;
+
+    min-width:260px;
+
+    padding:16px 30px;
+
     border:none;
-    border-radius:12px;
+
+    border-radius:999px;
+
+    background:rgba(182,147,181,.45);
+
+    color:white;
+
+    font-family:"TheSeasons",serif;
+
+    font-size:16px;
+
+    letter-spacing:2px;
+
     cursor:pointer;
+
+    transition:.25s;
+
 }
 
-/* ---------- MOBILE ---------- */
+button:hover{
 
-@media (max-width:768px){
+    transform:translateY(-2px);
 
-    body{
-        padding:15px;
-    }
+    background:rgba(203,170,201,.65);
 
-    h1{
-        font-size:28px;
-    }
+}
 
-    h2{
-        font-size:22px;
-    }
+/* ========================= */
+/* FINALE */
+/* ========================= */
 
-    .intro{
-        font-size:16px;
-    }
+a button{
 
-    .answer{
-        width:100%;
-        font-size:17px;
-        padding:15px;
-    }
+    margin-top:40px;
 
-    button{
-        width:100%;
-        max-width:320px;
-        font-size:17px;
-    }
+}
 
-    .info{
-        flex-direction:column;
-    }
+/* ========================= */
+/* MOBILE */
+/* ========================= */
 
-    .info div{
-        width:100%;
-    }
+@media(max-width:768px){
+
+.start-screen h1{
+
+    font-size:56px;
+
+}
+
+.start-screen p{
+
+    font-size:20px;
+
+}
+
+h2{
+
+    font-size:34px;
+
+}
+
+.answer{
+
+    font-size:17px;
+
+}
+
+button{
+
+    width:100%;
+
+    max-width:320px;
+
+    font-size:19px;
+
+}
+
+#startButton{
+
+    width:280px;
+
+    height:78px;
+
+    font-size:24px;
+
+    letter-spacing:8px;
+
+}
 
 }
