@@ -3,181 +3,126 @@ let ans = new Array(questions.length).fill(null);
 
 const app = document.getElementById("app");
 
-function startScreen() {
-
-    app.innerHTML = `
-        <div class="start-screen">
-
-            <h1>Test Finale</h1>
-
-            <p>
-                Prenditi il tuo tempo per rispondere!<br>
-                Ogni domanda riguarda un argomento trattato nelle lezioni precedenti.
-                Se superi il test, ti verrà rilasciato il
-                <strong>Certificato di Stregoneria!</strong> ✨
-            </p>
-
-            <button id="startButton">INIZIA</button>
-
-        </div>
-    `;
-
-    document.getElementById("startButton").onclick = () => {
-        i = 0;
-        draw();
-    };
-
+function transition(render){
+    app.style.opacity="0";
+    app.style.transform="translateY(20px)";
+    setTimeout(()=>{
+        render();
+        app.style.opacity="1";
+        app.style.transform="translateY(0)";
+    },250);
 }
 
-function draw() {
+function startScreen(){
+    app.innerHTML=`
+    <div class="start-screen">
+        <h1>Test Finale</h1>
+        <p>
+            Prenditi il tuo tempo per rispondere!<br>
+            Ogni domanda riguarda un argomento trattato nelle lezioni precedenti.
+            Se superi il test, ti verrà rilasciato il Certificato di Stregoneria! ✨
+        </p>
+        <button id="startButton">INIZIA</button>
+    </div>`;
 
-    if (i >= questions.length) {
-        end();
+    document.getElementById("startButton").onclick=()=>{
+        i=0;
+        transition(draw);
+    };
+}
+
+function draw(){
+
+    if(i>=questions.length){
+        transition(end);
         return;
     }
 
-    let q = questions[i];
+    const q=questions[i];
 
-    app.innerHTML = `
-        <div class="progress-text">
-            Domanda ${i + 1} di ${questions.length}
-        </div>
-
+    app.innerHTML=`
+        <div class="progress-text">Domanda ${i+1} di ${questions.length}</div>
         <h2>${q.question}</h2>
     `;
 
-    // Risposte
-    q.answers.forEach((a, n) => {
+    q.answers.forEach((text,index)=>{
+        const b=document.createElement("button");
+        b.className="answer";
+        b.textContent=text;
 
-        const b = document.createElement("button");
+        if(ans[i]===index) b.classList.add("selected");
 
-        b.className = "answer";
-
-        if (ans[i] === n) {
+        b.onclick=()=>{
+            ans[i]=index;
+            document.querySelectorAll(".answer").forEach(x=>x.classList.remove("selected"));
             b.classList.add("selected");
-        }
-
-        b.textContent = a;
-
-        b.onclick = () => {
-            ans[i] = n;
-            draw();
         };
 
         app.appendChild(b);
-
     });
 
-    // Contenitore pulsanti
-    const nav = document.createElement("div");
-    nav.className = "nav-buttons";
+    const nav=document.createElement("div");
+    nav.className="nav-buttons";
 
-    // Pulsante Avanti
-    const next = document.createElement("button");
-
-    next.textContent =
-        i === questions.length - 1
-            ? "Concludi"
-            : "Avanti ➜";
-
-    next.onclick = () => {
-
-        if (ans[i] === null) {
-
+    const next=document.createElement("button");
+    next.textContent=i===questions.length-1?"CONCLUDI":"AVANTI ❯";
+    next.onclick=()=>{
+        if(ans[i]===null){
             alert("Seleziona una risposta.");
-
             return;
-
         }
-
         i++;
-
-        draw();
-
+        transition(draw);
     };
 
-    // Pulsante Indietro
-    const prev = document.createElement("button");
-
-    prev.textContent = "⬅ Indietro";
-
-    if (i === 0) {
-        prev.style.visibility = "hidden";
-    }
-
-    prev.onclick = () => {
-
-        if (i > 0) {
-
+    const prev=document.createElement("button");
+    prev.textContent="❮ INDIETRO";
+    if(i===0) prev.style.visibility="hidden";
+    prev.onclick=()=>{
+        if(i>0){
             i--;
-
-            draw();
-
+            transition(draw);
         }
-
     };
 
-    // Ordine: Avanti sopra, Indietro sotto
     nav.appendChild(next);
     nav.appendChild(prev);
-
     app.appendChild(nav);
-
 }
 
-function end() {
+function end(){
 
-    let s = 0;
+    let score=0;
 
-    ans.forEach((a, n) => {
-
-        if (a === questions[n].correct) {
-
-            s++;
-
-        }
-
+    ans.forEach((a,n)=>{
+        if(a===questions[n].correct) score++;
     });
 
-    if (s >= 6) {
-
-        app.innerHTML = `
-            <h2>🎉 Complimenti!</h2>
-
-            <p>
-                Hai risposto correttamente a
-                <b>${s}</b> domande su
-                <b>${questions.length}</b>.
-            </p>
-
+    if(score>=6){
+        app.innerHTML=`
+        <div class="result">
+            <h1>🎉 Complimenti!</h1>
+            <br><p>Hai risposto correttamente a <b>${score}</b> domande su <b>${questions.length}</b>.</p>
             <a href="download/pdf.pdf" download>
                 <button>📜 Scarica il Certificato</button>
             </a>
-        `;
-
-    } else {
-
-        app.innerHTML = `
+        </div>`;
+    }else{
+        app.innerHTML=`
+        <div class="result">
             <h2>📚 Test non superato</h2>
+            <p>Hai risposto correttamente a <b>${score}</b> domande su <b>${questions.length}</b>.</p>
+            <p>Devi ottenere almeno <b>6 risposte corrette su ${questions.length}</b>.</p>
+            <br><button id="retryButton">🔄 Ritenta il test</button>
+        </div>`;
 
-            <p>
-                Hai risposto correttamente a
-                <b>${s}</b> domande su
-                <b>${questions.length}</b>.
-            </p>
-
-            <p>
-                Devi ottenere almeno
-                <b>6 risposte corrette su ${questions.length}</b>.
-            </p>
-
-            <br><button onclick="location.reload()">
-                🔄 Ritenta il test
-            </button>
-        `;
-
+        document.getElementById("retryButton").onclick=()=>{
+            i=0;
+            ans=new Array(questions.length).fill(null);
+            transition(startScreen);
+        };
     }
-
 }
 
+app.style.transition="opacity .25s ease, transform .25s ease";
 startScreen();

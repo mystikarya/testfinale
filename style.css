@@ -7,334 +7,296 @@
     font-family: "IMFellItalic";
     src: url("fonts/IMFellEnglish-Italic.ttf") format("truetype");
 }
-@font-face {
-    font-family: "TheSeasons";
-    src: url("fonts/TheSeasons-Reg.otf") format("truetype");
-}
 
 @font-face {
-    font-family: "Cormorant";
-    src: url("fonts/CormorantGaramond.ttf") format("truetype");
+    font-family: "Nymeria";
+    src: url("fonts/Nymeria.ttf") format("truetype");
 }
+
 @font-face {
-    font-family: "Cormorant-light";
-    src: url("fonts/CormorantGaramond-Light.ttf") format("truetype");
+    font-family: "Maginia";
+    src: url("fonts/Maginia.otf") format("truetype");
 }
 
-/* ========================= */
-/* GENERALE */
-/* ========================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
 }
 
-body{
-
-    min-height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:
-        linear-gradient(rgba(12,8,25,.45),rgba(12,8,25,.65)),
-        url("assets/background.png") center center/cover no-repeat fixed;
-
-    color:#F6F1EB;
-
-    font-family:Arial,sans-serif;
-
-    padding:30px;
-
+html {
+    scroll-behavior: smooth
 }
 
-#app{
-
-    width:100%;
-
-    max-width:850px;
-
-    text-align:center;
-
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    padding: 30px;
+    color: #F6F1EB;
+    font-family: Arial, sans-serif;
+    background: #090613;
+    position: relative
 }
 
-/* ========================= */
-/* SCHERMATA INIZIALE */
-/* ========================= */
-
-.start-screen{
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    min-height:80vh;
-
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(rgba(12, 8, 25, .45), rgba(12, 8, 25, .65)), url("assets/background.png") center/cover no-repeat;
+    z-index: -2;
+    animation: kenburns 35s ease-in-out infinite alternate
 }
 
-.start-screen h1{
-
-    font-family:"TheSeasons";
-
-    font-size:84px;
-
-    color:#FFF7F0;
-
-    font-weight:400;
-
-    margin-bottom:40px;
-
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, .10), transparent 35%), radial-gradient(circle at 80% 40%, rgba(255, 230, 150, .08), transparent 30%);
+    z-index: -1;
+    animation: floatGlow 12s ease-in-out infinite alternate
 }
 
-.start-screen p{
-
-    font-family:"Cormorant-light";
-
-    font-size:24px;
-
-    line-height:1.2;
-
-    max-width:760px;
-
-    color:#F1E8E2;
-
+#app {
+    width: 100%;
+    max-width: 850px;
+    text-align: center;
+    animation: fadeUp .8s ease
 }
 
-#startButton{
-
-    margin-top:60px;
-
-    width:320px;
-
-    height:90px;
-
-    border:none;
-
-    border-radius:999px;
-
-    background:rgba(180,145,180,.40);
-
-    backdrop-filter:blur(10px);
-
-    color:white;
-
-    font-size:30px;
-
-    letter-spacing:12px;
-
-    cursor:pointer;
-
-    transition:.3s;
-
+.start-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh
 }
 
-#startButton:hover{
-
-    transform:scale(1.04);
-
-    background:rgba(201,166,203,.60);
-
+h1 {
+    font-family: "Nymeria";
+    font-size: 40px;
+    font-weight: 400;
+    color: #FFF7F0;
+    animation: titleIn 1s ease
 }
 
-/* ========================= */
-/* QUIZ */
-/* ========================= */
+.start-screen h1 {
+    font-family: "Nymeria";
+    font-size: 84px;
+    font-weight: 400;
+    color: #FFF7F0;
+    margin-bottom: 40px;
+    animation: titleIn 1s ease
+}
 
-.progress-text{
+.start-screen p {
+    font-family: "Maginia";
+    font-size: 18px;
+    letter-spacing: 2px;
+    line-height: 1.25;
+    max-width: 760px;
+    animation: fadeUp 1.2s ease
+}
 
-    font-family:"arial";
+#startButton {
+    margin-top: 60px;
+    width: 280px;
+    height: 80px;
+    border: none;
+    border-radius: 400px;
+    background: rgba(180, 145, 180, .4);
+    backdrop-filter: blur(12px);
+    color: #fff;
+    font: 20px "Nymeria";
+    letter-spacing: 12px;
+    cursor: pointer;
+    transition: .3s;
+    animation: pulse 3s infinite
+}
 
-    font-size:14px;
-
-    color:#CDB8E8;
-
-    letter-spacing:4px;
-    font-weight: lighter;
+.progress-text {
+    font: 300 14px Arial;
+    letter-spacing: 4px;
     text-transform: uppercase;
-    margin-bottom:25px;
-
+    color: #CDB8E8;
+    margin-bottom: 25px
 }
 
-h2{
-
-    font-family:"TheSeasons";
-
-    font-size:48px;
-
-    font-weight:400;
-
-    margin-bottom:45px;
-
-    color:#FFF7F0;
-
+h2 {
+    font-family: "Maginia";
+    font-size: 48px;
+    line-height: 1.25;
+    font-weight: 400;
+    color: #FFF7F0;
+    animation: fadeUp .6s
 }
 
-/* ========================= */
-/* RISPOSTE */
-/* ========================= */
+.answer {
+    display: block;
+    width: 100%;
+    max-width: 650px;
+    margin: 18px auto;
+    padding: 18px;
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 18px;
+    backdrop-filter: blur(8px);
+    color: #fff;
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    cursor: pointer;
+    transition: .3s;
+    animation: fadeUp .5s both
+}
 
-.answer{
+.answer:nth-of-type(1) {
+    animation-delay: .05s
+}
 
-    display:block;
+.answer:nth-of-type(2) {
+    animation-delay: .1s
+}
 
-    width:100%;
+.answer:nth-of-type(3) {
+    animation-delay: .15s
+}
 
-    max-width:650px;
-
-    margin:18px auto;
-
-    padding:18px;
-
-    background:rgba(255,255,255,.08);
-
-    border:1px solid rgba(255,255,255,.18);
-
-    border-radius:18px;
-
-    color:white;
-
-    font-size:19px;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-    backdrop-filter:blur(5px);
-
+.answer:nth-of-type(4) {
+    animation-delay: .2s
 }
 
 .answer:hover,
-.answer.selected{
-
-    background:#DFC36A;
-
-    color:#231A0A;
-
-    border-color:#DFC36A;
-
+.answer.selected {
+    background: #DFC36A;
+    color: #231A0A;
+    border-color: #DFC36A;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0 24px rgba(223, 195, 106, .45)
 }
 
-/* ========================= */
-/* PULSANTI */
-/* ========================= */
-
-.nav-buttons{
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    gap:18px;
-
-    margin-top:40px;
-
+.nav-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    margin-top: 40px
 }
 
-button{
-
-    min-width:260px;
-
-    padding:16px 30px;
-
-    border:none;
-
-    border-radius:999px;
-
-    background:rgba(182,147,181,.45);
-
-    color:white;
-
-    font-family:"TheSeasons",serif;
-
-    font-size:16px;
-
-    letter-spacing:2px;
-
-    cursor:pointer;
-
-    transition:.25s;
-
+button {
+    min-width: 260px;
+    padding: 16px 30px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(182, 147, 181, .45);
+    color: #fff;
+    font: 16px "Maginia";
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: .3s;
+    backdrop-filter: blur(10px)
 }
 
-button:hover{
-
-    transform:translateY(-2px);
-
-    background:rgba(203,170,201,.65);
-
+button:hover {
+    transform: translateY(-3px) scale(1.03);
+    background: rgba(203, 170, 201, .65);
+    box-shadow: 0 0 24px rgba(255, 255, 255, .18)
 }
 
-/* ========================= */
-/* FINALE */
-/* ========================= */
-
-a button{
-
-    margin-top:40px;
-
+button:active {
+    transform: scale(.97)
 }
 
-/* ========================= */
-/* MOBILE */
-/* ========================= */
-
-@media(max-width:768px){
-
-.start-screen h1{
-
-    font-size:56px;
-
+a button {
+    margin-top: 40px
 }
 
-.start-screen p{
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px)
+    }
 
-    font-size:20px;
-
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
 }
 
-h2{
+@keyframes titleIn {
+    from {
+        opacity: 0;
+        transform: translateY(-25px)
+    }
 
-    font-size:34px;
-
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
 }
 
-.answer{
+@keyframes pulse {
 
-    font-size:17px;
+    0%,
+    100% {
+        transform: scale(1)
+    }
 
+    50% {
+        transform: scale(1.04)
+    }
 }
 
-button{
+@keyframes kenburns {
+    from {
+        transform: scale(1)
+    }
 
-    width:100%;
-
-    max-width:320px;
-
-    font-size:19px;
-
+    to {
+        transform: scale(1.08)
+    }
 }
 
-#startButton{
+@keyframes floatGlow {
+    from {
+        opacity: .35;
+        transform: translateY(-10px)
+    }
 
-    width:280px;
-
-    height:78px;
-
-    font-size:24px;
-
-    letter-spacing:8px;
-
+    to {
+        opacity: .6;
+        transform: translateY(10px)
+    }
 }
 
+@media(max-width:768px) {
+    .start-screen h1 {
+        font-size: 56px
+    }
+
+    .start-screen p {
+        font-size: 20px
+    }
+
+    h2 {
+        font-size: 34px
+    }
+
+    .answer {
+        font-size: 17px
+    }
+
+    button {
+        width: 100%;
+        max-width: 320px;
+        font-size: 19px
+    }
+
+    #startButton {
+        width: 280px;
+        height: 78px;
+        font-size: 24px;
+        letter-spacing: 8px
+    }
 }
