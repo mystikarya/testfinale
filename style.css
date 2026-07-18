@@ -272,11 +272,11 @@ a button {
 
 @media(max-width:768px) {
     .start-screen h1 {
-        font-size: 56px
+        font-size: 84px
     }
 
     .start-screen p {
-        font-size: 20px
+        font-size: 12px
     }
 
     h2 {
@@ -284,7 +284,7 @@ a button {
     }
 
     .answer {
-        font-size: 17px
+        font-size: 14px
     }
 
     button {
