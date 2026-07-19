@@ -44,21 +44,31 @@ body {
 body::before {
     content: "";
     position: fixed;
-    inset: 0;
-    background: linear-gradient(rgba(12, 8, 25, .45), rgba(12, 8, 25, .65)), url("assets/background.png") center/cover no-repeat;
+    inset: -3%;
     z-index: -2;
-    animation: kenburns 35s ease-in-out infinite alternate
+
+    background:
+        linear-gradient(rgba(12, 8, 25, .45), rgba(12, 8, 25, .65)),
+        url("assets/background.png");
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+
+    animation: backgroundMove 20s ease-in-out infinite alternate;
 }
 
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, .10), transparent 35%), radial-gradient(circle at 80% 40%, rgba(255, 230, 150, .08), transparent 30%);
-    z-index: -1;
-    animation: floatGlow 12s ease-in-out infinite alternate
-}
+@keyframes backgroundMove {
 
+    0%{
+        transform: scale(1) translate(0,0);
+    }
+
+    100%{
+        transform: scale(1.08) translate(-20px,-15px);
+    }
+
+}
 #app {
     width: 100%;
     max-width: 850px;
@@ -270,6 +280,29 @@ a button {
     }
 }
 
+/* =========================== LOADER =========================== */
+
+@keyframes fadeIn{ from{opacity:0;} to{opacity:1;} }
+
+.loading-screen{ display:flex; justify-content:center;
+align-items:center; min-height:70vh; animation:fadeIn .4s ease; }
+
+.magic-loader{ position:relative; width:140px; height:140px; }
+
+.ring{ position:absolute; inset:0; border-radius:50%; border:1px solid
+rgba(223,195,106,.35); box-shadow: 0 0 18px rgba(223,195,106,.18), inset
+0 0 18px rgba(223,195,106,.08); }
+
+.orb{ position:absolute; top:50%; left:50%; width:12px; height:12px;
+margin:-6px; border-radius:50%; background:#DFC36A; box-shadow: 0 0 8px
+#DFC36A, 0 0 18px rgba(223,195,106,.7), 0 0 35px rgba(223,195,106,.35);
+animation:orbit 2.8s linear infinite; }
+
+@keyframes orbit{ from{ transform:rotate(0deg) translateX(70px); } to{
+transform:rotate(360deg) translateX(70px); } }
+
+
+
 @media(max-width:768px) {
 
       body{
@@ -327,4 +360,5 @@ a button {
     color: #CDB8E8;
     margin-bottom: 12px;
 }
+
 }

@@ -34,7 +34,7 @@ function startScreen(){
 function draw(){
 
     if(i>=questions.length){
-        transition(end);
+        showLoading();
         return;
     }
 
@@ -46,48 +46,97 @@ function draw(){
     `;
 
     q.answers.forEach((text,index)=>{
+
         const b=document.createElement("button");
         b.className="answer";
         b.textContent=text;
 
-        if(ans[i]===index) b.classList.add("selected");
+        if(ans[i]===index){
+            b.classList.add("selected");
+        }
 
         b.onclick=()=>{
+
             ans[i]=index;
-            document.querySelectorAll(".answer").forEach(x=>x.classList.remove("selected"));
+
+            document
+                .querySelectorAll(".answer")
+                .forEach(x=>x.classList.remove("selected"));
+
             b.classList.add("selected");
+
         };
 
         app.appendChild(b);
+
     });
 
     const nav=document.createElement("div");
     nav.className="nav-buttons";
 
     const next=document.createElement("button");
-    next.textContent=i===questions.length-1?"CONCLUDI":"AVANTI ❯";
+    next.textContent=i===questions.length-1 ? "CONCLUDI" : "AVANTI ❯";
+
     next.onclick=()=>{
+
         if(ans[i]===null){
             alert("Seleziona una risposta.");
             return;
         }
+
         i++;
         transition(draw);
+
     };
 
     const prev=document.createElement("button");
     prev.textContent="❮ INDIETRO";
-    if(i===0) prev.style.visibility="hidden";
+
+    if(i===0){
+        prev.style.visibility="hidden";
+    }
+
     prev.onclick=()=>{
+
         if(i>0){
             i--;
             transition(draw);
         }
+
     };
 
     nav.appendChild(next);
     nav.appendChild(prev);
+
     app.appendChild(nav);
+
+}
+
+function showLoading(){
+
+    app.innerHTML=`
+        <div class="loading-screen">
+            <div class="magic-loader">
+                <div class="ring"></div>
+                <div class="orb"></div>
+            </div>
+        </div>
+    `;
+
+    app.style.opacity="0";
+
+    requestAnimationFrame(()=>{
+
+        app.style.opacity="1";
+
+    });
+
+    setTimeout(()=>{
+
+        transition(end);
+
+    },2500);
+
 }
 
 function end(){
