@@ -333,13 +333,14 @@ transform:rotate(360deg) translateX(70px); } }
 
       body{
 min-height:100dvh;
-    padding:0;
+    padding: 0px;
     align-items:flex-start;
 
 
     }
 
     #app{
+    padding: 10px;
 
         width:100%;
 
@@ -353,11 +354,11 @@ min-height:100dvh;
     justify-content:flex-start;
     align-items:center;
 
-    padding-top:100px;
+    padding-top:120px;
 
         }
 
-    .result{padding-top:100px;}
+    .result{padding-top:120px;}
 
 
     .start-screen h1 {
@@ -388,7 +389,7 @@ min-height:100dvh;
     width:280px;
     height:72px;
 
-    margin-top:48px;
+    margin-top:38px;
 
     font-family:"Nymeria";
     font-size:14px;
@@ -402,6 +403,8 @@ min-height:100dvh;
     font: 300 10px Arial;
     color: #CDB8E8;
     margin-bottom: 12px;
+        margin-top: 12px;
+
 }
 
 }
