@@ -18,9 +18,7 @@ function startScreen(){
     <div class="start-screen">
         <h1>Test Finale</h1>
         <p>
-            Prenditi il tuo tempo per rispondere!<br>
-            Ogni domanda riguarda un argomento trattato nelle lezioni precedenti.<br>
-            Se superi il test, ti verrà rilasciato il Certificato di Stregoneria!✨
+            Rispondi correttamente per otterrenere il Certificato di Stregoneria!
         </p>
         <button id="startButton">INIZIA</button>
     </div>`;
@@ -153,15 +151,15 @@ function end(){
             <h1>🎉 Complimenti!</h1>
             <br><p>Hai risposto correttamente a <b>${score}</b> domande su <b>${questions.length}</b>.</p>
             <a href="download/pdf.pdf" download>
-                <button>📜 Scarica il Certificato</button>
+                <button>📜 Certificato</button>
             </a>
         </div>`;
     }else{
         app.innerHTML=`
         <div class="result">
             <h2>📚 Test non superato</h2>
-            <p>Hai risposto correttamente a <b>${score}</b> domande su <b>${questions.length}</b>.</p>
-            <p>Devi ottenere almeno <b>6 risposte corrette su ${questions.length}</b>.</p>
+            <br><p>Hai risposto correttamente a <b>${score}</b> domande su <b>${questions.length}</b>.</p>
+            <br><p>Devi ottenere almeno <b>6 risposte corrette su ${questions.length}</b>.</p>
             <br><button id="retryButton">🔄 Ritenta il test</button>
         </div>`;
 
