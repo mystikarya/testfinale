@@ -55,7 +55,7 @@ body::before {
     background-size: cover;
     background-position: center center;
 
-    animation: backgroundMove 10s ease-in-out infinite alternate;
+    animation: backgroundMove 5s ease-in-out infinite alternate;
 }
 
 @keyframes backgroundMove {
@@ -334,7 +334,7 @@ transform:rotate(360deg) translateX(70px); } }
       body{
 
         align-items:flex-start;
-        padding-top:60px;
+    padding-top:calc(env(safe-area-inset-top) + 20px);
 
     }
 
@@ -347,11 +347,11 @@ transform:rotate(360deg) translateX(70px); } }
     .start-screen{
 
         min-height:auto;
-        justify-content:flex-start;
-        padding-top:160px;
+         justify-content:flex-start;
+    padding-top:90px;
         }
 
-    .result{padding-top:140px;}
+    .result{padding-top:90px;}
 
 
     .start-screen h1 {
@@ -385,7 +385,7 @@ transform:rotate(360deg) translateX(70px); } }
     margin-top:48px;
 
     font-family:"Nymeria";
-    font-size:20px;
+    font-size:14px;
     letter-spacing:8px;
 
     animation:pulse 3s infinite;
