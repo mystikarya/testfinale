@@ -21,7 +21,7 @@ html {
 }
 
 body {
-    min-height: 100vh;
+    min-height:100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -332,9 +332,10 @@ transform:rotate(360deg) translateX(70px); } }
 @media(max-width:768px) {
 
       body{
+min-height:100dvh;
+    padding:0;
+    align-items:flex-start;
 
-        align-items:flex-start;
-    padding-top:calc(env(safe-area-inset-top) + 20px);
 
     }
 
@@ -346,12 +347,17 @@ transform:rotate(360deg) translateX(70px); } }
 
     .start-screen{
 
-        min-height:auto;
-         justify-content:flex-start;
-    padding-top:90px;
+       min-height:100dvh;
+
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+
+    padding-top:100px;
+
         }
 
-    .result{padding-top:90px;}
+    .result{padding-top:100px;}
 
 
     .start-screen h1 {
