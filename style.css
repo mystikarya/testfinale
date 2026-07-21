@@ -33,7 +33,7 @@ body {
     padding: 30px;
     color: #F6F1EB;
     font-family: Arial, sans-serif;
-    background: #090613;
+    background: #000;
     position: relative
 }
 
@@ -135,7 +135,7 @@ h1 {
 }
 
 h2 {
-    padding:4px;
+    padding: 4px;
     font-family: "Maginia";
     font-size: 48px;
     line-height: 1.25;
@@ -366,31 +366,31 @@ a button {
 }
 
 
-#certificateName{
+#certificateName {
 
-    width:320px;
+    width: 320px;
 
-    max-width:90%;
+    max-width: 90%;
 
-    padding:14px;
+    padding: 14px;
 
-    border-radius:12px;
+    border-radius: 12px;
 
-    border:1px solid #aaa;
+    border: 1px solid #aaa;
 
-    font-size:18px;
+    font-size: 18px;
 
-    text-align:center;
+    text-align: center;
 
-    outline:none;
+    outline: none;
 
-    margin-top:15px;
+    margin-top: 15px;
 
 }
 
-#certificateName:focus{
+#certificateName:focus {
 
-    border-color:#7d5cff;
+    border-color: #7d5cff;
 
 }
 
@@ -400,8 +400,6 @@ a button {
         min-height: 100dvh;
         padding: 0px;
         align-items: flex-start;
-
-
     }
 
     #app {
@@ -446,9 +444,7 @@ a button {
         font-size: 14px;
         width: calc(100% - 20px);
         max-width: 650px;
-
         margin: 18px auto;
-
         padding: 18px;
 
 
