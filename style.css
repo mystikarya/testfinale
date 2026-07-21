@@ -8,6 +8,12 @@
     src: url("fonts/Maginia.otf") format("truetype");
 }
 
+@font-face {
+    font-family: "Elven";
+    src: url("fonts/elvencommonspeak.ttf") format("truetype");
+    font-display: swap;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -360,6 +366,33 @@ a button {
 }
 
 
+#certificateName{
+
+    width:320px;
+
+    max-width:90%;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    border:1px solid #aaa;
+
+    font-size:18px;
+
+    text-align:center;
+
+    outline:none;
+
+    margin-top:15px;
+
+}
+
+#certificateName:focus{
+
+    border-color:#7d5cff;
+
+}
 
 @media(max-width:768px) {
 

@@ -2,14 +2,14 @@ const questions = [
 
 {
 question:"E' corretto classificare la Magia per colori? Ad esempio: Magia Rossa, Magia Nera, Magia Bianca?",
-answers:["Sì - il colore dipende dalle intenzioni della Magia, ad esempio la Magia Nera ha intenzioni oscure","No - non è corretto ridurre la Magia a un colore poiché la magia non distingue il bene dal male","In alcuni casi sì e in alcuni casi no","Ognuno fa ciò che vuole"],
+answers:["Sì, il colore dipende dalle intenzioni della Magia, ad esempio la Magia Nera ha intenzioni oscure","No, non è corretto ridurre la Magia a un colore poiché la magia non distingue il bene dal male","In alcuni casi sì e in alcuni casi no","Ognuno fa ciò che vuole"],
 correct:1
 },
 
 {
 question:"Quante fasi ha un rituale?",
-answers:["2: apertura e chiusura","3: apertura, svolgimento e chiusura","1: svolgimento","Un rituale non si divide in fasi"],
-correct:1
+answers:["3: purificazione, svolgimento e chiusura","3: intenzione, svolgimento e chiusura","7: intenzione, preparazione, purificazione, apertura, svolgimento, chisura, radicamento","Un rituale non si divide in fasi"],
+correct:2
 },
 
 {
@@ -26,7 +26,7 @@ correct:0
 
 {
 question:"E' sempre giusto seguire le fasi lunari quando si effettua un rituale?",
-answers:["No, non è necessario seguire le fasi lunari","Sì, è sempre opportuno seguire le fasi lunari","E' consigliato seguire le fasi lunari quando si svolge un rituale di amore","Dipende da più fattori: esperienza della Strega, tipologia di Stregoneria, preferenza personale"],
+answers:["No, non è necessario seguire le fasi lunari","Sì, è sempre opportuno seguire le fasi lunari","E' consigliato seguire le fasi lunari quando si svolge un rituale di amore","Dipende da più fattori, come: esperienza della Strega, tipologia di Stregoneria, preferenza personale, culto etc..."],
 correct:3
 },
 
