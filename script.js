@@ -175,7 +175,7 @@ function end() {
             <button id="generateCertificate">
                 📜 Genera Certificato
             </button>
-            <br><p><small>(Aspetta qualche secondo per l'inizio del download)</small></p>
+            <p><small>(aspetta qualche secondo per l'inizio del download)</small></p>
 
             <canvas
                 id="certificateCanvas"
@@ -265,7 +265,7 @@ async function generateCertificate() {
         ctx.fillText(
             name,
             canvas.width / 2,
-            800
+            700
         );
 
         const link = document.createElement("a");
