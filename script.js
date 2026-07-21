@@ -205,10 +205,20 @@ function end() {
     }
 }
 
+let certificateFontPromise = null;
+
+async function loadCertificateFont() { if (!certificateFontPromise) {
+certificateFontPromise = (async () => { const font = new FontFace(
+“Elven”, “url(fonts/elvencommonspeak.ttf)” ); await font.load();
+document.fonts.add(font); await document.fonts.ready; })(); }
+
+    return certificateFontPromise;
+
+}
+
 async function generateCertificate() {
 
     const input = document.getElementById("certificateName");
-
     const name = input.value.trim();
 
     if (name === "") {
@@ -216,27 +226,17 @@ async function generateCertificate() {
         return;
     }
 
+    const formattedName = name
+        .toLowerCase()
+        .replace(/\b\p{L}/gu, l => l.toUpperCase());
+
+    await loadCertificateFont();
+
     const canvas = document.getElementById("certificateCanvas");
     const ctx = canvas.getContext("2d");
 
-    // Carica il font
-
-    const font = new FontFace(
-        "Elven",
-        "url(fonts/elvencommonspeak.ttf)"
-    );
-
-    await font.load();
-
-    document.fonts.add(font);
-
-    // Carica il certificato
-
     const image = new Image();
-
     image.crossOrigin = "anonymous";
-    image.src = "download/certificato.png";
-
     image.src = "download/certificato.png";
 
     image.onload = () => {
@@ -244,43 +244,51 @@ async function generateCertificate() {
         canvas.width = image.width;
         canvas.height = image.height;
 
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(image, 0, 0);
 
-        let size = 70;
-
+        let size = 120;
         ctx.font = `${size}px Elven`;
 
-        while (
-            ctx.measureText(name).width > 900 &&
-            size > 40
-        ) {
+        while (ctx.measureText(formattedName).width > 1100 && size > 70) {
             size--;
             ctx.font = `${size}px Elven`;
         }
 
-        ctx.fillStyle = "#3a2b22";
-
+        ctx.fillStyle = "#3b2d24";
         ctx.textAlign = "center";
-
-        ctx.textBaseline = "middle";
+        ctx.textBaseline = "alphabetic";
 
         ctx.fillText(
-            name,
+            formattedName,
             canvas.width / 2,
-            495
+            510
         );
 
-        const link = document.createElement("a");
+        canvas.toBlob(blob => {
 
-        link.download = `Certificato - ${name}.png`;
+            const url = URL.createObjectURL(blob);
 
-        link.href = canvas.toDataURL("image/png");
+            const link = document.createElement("a");
+            link.download = `Certificato - ${formattedName}.png`;
+            link.href = url;
 
-        link.click();
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+
+            URL.revokeObjectURL(url);
+
+        }, "image/png");
 
     };
 
+    image.onerror = () => {
+        alert("Impossibile caricare il certificato.");
+    };
+
 }
+
 
 app.style.transition = "opacity .25s ease, transform .25s ease";
 startScreen();
