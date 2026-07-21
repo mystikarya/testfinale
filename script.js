@@ -245,7 +245,7 @@ async function generateCertificate() {
         canvas.height = image.height;
 
         ctx.drawImage(image, 0, 0);
-        let size = 220;
+        let size = 420;
         ctx.font = `${size}px Elven`;
         while (
             ctx.measureText(name).width > 900 &&
@@ -264,7 +264,7 @@ async function generateCertificate() {
         ctx.fillText(
             name,
             canvas.width / 2,
-            560
+            760
         );
 
         const link = document.createElement("a");
