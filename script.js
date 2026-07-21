@@ -265,7 +265,7 @@ async function generateCertificate() {
         ctx.fillText(
             name,
             canvas.width / 2,
-            600
+            580
         );
 
         const link = document.createElement("a");

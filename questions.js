@@ -26,7 +26,7 @@ correct:0
 
 {
 question:"E' sempre giusto seguire le fasi lunari quando si effettua un rituale?",
-answers:["No, non è necessario seguire le fasi lunari","Sì, è sempre opportuno seguire le fasi lunari","E' consigliato seguire le fasi lunari quando si svolge un rituale di amore","Dipende da più fattori, come: esperienza della Strega, tipologia di Stregoneria, preferenza personale, culto etc..."],
+answers:["No, non è necessario seguire le fasi lunari","Sì, è sempre opportuno seguire le fasi lunari","E' consigliato seguire le fasi lunari quando si svolge un rituale di amore","Dipende da più fattori, come: esperienza della Strega, tipologia di Stregoneria, preferenza personale, culto."],
 correct:3
 },
 
