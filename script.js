@@ -161,7 +161,7 @@ function end() {
 
             <br>
 
-            <p>Inserisci il nome che desideri sul certificato.</p>
+            <p>Inserisci il nome che desideri sul certificato</p>
 
             <input
                 id="certificateName"
@@ -175,6 +175,7 @@ function end() {
             <button id="generateCertificate">
                 📜 Genera Certificato
             </button>
+            <p><small>(aspetta qualche secondo per l'inizio del download)</small></p>
 
             <canvas
                 id="certificateCanvas"
@@ -245,7 +246,7 @@ async function generateCertificate() {
         canvas.height = image.height;
 
         ctx.drawImage(image, 0, 0);
-        let size = 420;
+        let size = 520;
         ctx.font = `${size}px Elven`;
         while (
             ctx.measureText(name).width > 900 &&
@@ -264,7 +265,7 @@ async function generateCertificate() {
         ctx.fillText(
             name,
             canvas.width / 2,
-            760
+            860
         );
 
         const link = document.createElement("a");
