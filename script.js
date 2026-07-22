@@ -176,7 +176,7 @@ function end() {
                 📜 Genera Certificato
             </button>
             <p class="aspetta" id="downloadMessage">
-    <small>(aspetta qualche secondo per l'inizio del download)</small>
+    <small>(aspetta qualche secondo l'inizio del download)</small>
 </p>
             <canvas
                 id="certificateCanvas"
@@ -210,14 +210,38 @@ function end() {
 async function generateCertificate() {
 
     const input = document.getElementById("certificateName");
-    const name = input.value.trim();
+
+    let name = input.value.trim();
+
+    // Mantiene solo lettere (di qualsiasi lingua), segni diacritici,
+    // apostrofi, trattini e spazi.
+    name = name.replace(/[^\p{L}\p{M}' -]/gu, "");
+
+    // Elimina spazi multipli
+    name = name.replace(/\s+/g, " ");
+
+    // Maiuscola automatica delle iniziali
+name = name
+    .split(" ")
+    .map(word =>
+        word.charAt(0).toLocaleUpperCase() +
+        word.slice(1).toLocaleLowerCase()
+    )
+    .join(" ");
+    
+    // Aggiorna il campo
+    input.value = name;
 
     if (name === "") {
         alert("Inserisci il tuo nome.");
         return;
     }
 
-    // Mostra il messaggio con fade-in
+    if (name.split(" ").length < 2) {
+        alert("Inserisci nome e cognome.");
+        return;
+    }
+
     document
         .getElementById("downloadMessage")
         .classList.add("show");
@@ -267,10 +291,10 @@ async function generateCertificate() {
         );
 
         const link = document.createElement("a");
+
         link.download = `Certificato - ${name}.png`;
         link.href = canvas.toDataURL("image/png");
         link.click();
-
 
     };
 
