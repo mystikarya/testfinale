@@ -16,7 +16,7 @@ function transition(render) {
 function startScreen() {
     app.innerHTML = `
     <div class="start-screen">
-        <h1>Test Finale</h1>
+        <h1>TEST FINALE</h1>
         <p>
             Rispondi correttamente per otterrenere il<br>
             Certificato di Stregoneria!
@@ -151,7 +151,7 @@ function end() {
         app.innerHTML = `
         <div class="result">
 
-            <h1>🎉 Complimenti!</h1>
+            <h1>COMPLIMENTI</h1>
 
             <p>
                 Hai risposto correttamente a
@@ -175,8 +175,9 @@ function end() {
             <button id="generateCertificate">
                 📜 Genera Certificato
             </button>
-            <p><small>(aspetta qualche secondo per l'inizio del download)</small></p>
-
+            <p class="aspetta" id="downloadMessage">
+    <small>(aspetta qualche secondo per l'inizio del download)</small>
+</p>
             <canvas
                 id="certificateCanvas"
                 style="display:none"
@@ -209,7 +210,6 @@ function end() {
 async function generateCertificate() {
 
     const input = document.getElementById("certificateName");
-
     const name = input.value.trim();
 
     if (name === "") {
@@ -217,10 +217,13 @@ async function generateCertificate() {
         return;
     }
 
+    // Mostra il messaggio con fade-in
+    document
+        .getElementById("downloadMessage")
+        .classList.add("show");
+
     const canvas = document.getElementById("certificateCanvas");
     const ctx = canvas.getContext("2d");
-
-    // Carica il font
 
     const font = new FontFace(
         "Elven",
@@ -228,16 +231,11 @@ async function generateCertificate() {
     );
 
     await font.load();
-
     document.fonts.add(font);
-
-    // Carica il certificato
 
     const image = new Image();
 
     image.crossOrigin = "anonymous";
-    image.src = "download/certificato.png";
-
     image.src = "download/certificato.png";
 
     image.onload = () => {
@@ -246,8 +244,10 @@ async function generateCertificate() {
         canvas.height = image.height;
 
         ctx.drawImage(image, 0, 0);
-        let size = 660;
+
+        let size = 500;
         ctx.font = `${size}px Elven`;
+
         while (
             ctx.measureText(name).width > 900 &&
             size > 40
@@ -257,9 +257,7 @@ async function generateCertificate() {
         }
 
         ctx.fillStyle = "#3a2b22";
-
         ctx.textAlign = "center";
-
         ctx.textBaseline = "middle";
 
         ctx.fillText(
@@ -269,12 +267,10 @@ async function generateCertificate() {
         );
 
         const link = document.createElement("a");
-
         link.download = `Certificato - ${name}.png`;
-
         link.href = canvas.toDataURL("image/png");
-
         link.click();
+
 
     };
 

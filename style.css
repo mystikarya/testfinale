@@ -116,7 +116,7 @@ h1 {
     width: 280px;
     height: 72px;
 
-    margin-top: 48px;
+    margin-top: 40px;
 
     font-family: "Nymeria";
     font-size: 20px;
@@ -199,7 +199,6 @@ h2 {
 button {
 
     position: relative;
-
     min-width: 260px;
     padding: 18px 36px;
     border-radius: 999px;
@@ -394,6 +393,30 @@ a button {
 
 }
 
+.aspetta{
+
+    margin-top:16px;
+
+    opacity:0;
+
+    transform:translateY(8px);
+
+    pointer-events:none;
+
+    transition:
+        opacity .5s ease,
+        transform .5s ease;
+
+}
+
+.aspetta.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
 @media(max-width:768px) {
 
     body {
@@ -431,8 +454,6 @@ a button {
     }
 
     .start-screen p {
-        padding: 10px;
-
         font-size: 12px
     }
 
@@ -462,9 +483,6 @@ a button {
         min-width: 280px;
         width: 280px;
         height: 72px;
-
-        margin-top: 38px;
-
         font-family: "Nymeria";
         font-size: 14px;
         letter-spacing: 8px;
