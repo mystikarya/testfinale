@@ -505,7 +505,6 @@ a button {
 
     .result {
         padding: 10px;
-        padding-top: 80px;
     }
 
 
@@ -562,6 +561,10 @@ a button {
     .site-footer{
         bottom: 10px;
         font-size: 10px;
+    }
+
+    .start-screen{
+        padding-bottom: 80px;
     }
 
 
