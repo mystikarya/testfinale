@@ -228,7 +228,7 @@ async function generateCertificate() {
 
         input.value = name;
 
-        if (name === "") {
+        if (!name) {
             alert("Inserisci il tuo nome.");
             return;
         }
@@ -245,7 +245,7 @@ async function generateCertificate() {
         const canvas = document.getElementById("certificateCanvas");
         const ctx = canvas.getContext("2d");
 
-        // Carica il font (se possibile)
+        // Carica il font (se disponibile)
         try {
 
             const font = new FontFace(
@@ -257,72 +257,73 @@ async function generateCertificate() {
             document.fonts.add(font);
 
         } catch (e) {
-            console.warn("Font non caricato", e);
+
+            console.warn("Impossibile caricare il font personalizzato.", e);
+
         }
 
-        const image = new Image();
+        // Carica l'immagine del certificato
+        const image = await new Promise((resolve, reject) => {
 
-        image.crossOrigin = "anonymous";
+            const img = new Image();
 
-        image.onload = () => {
+            img.onload = () => resolve(img);
+            img.onerror = reject;
 
-            canvas.width = image.width;
-            canvas.height = image.height;
+            img.src = "download/certificato.png";
 
-            ctx.drawImage(image, 0, 0);
+        });
 
-            let size = 500;
+        canvas.width = image.width;
+        canvas.height = image.height;
+
+        ctx.drawImage(image, 0, 0);
+
+        let size = 500;
+        ctx.font = `${size}px Elven`;
+
+        while (
+            ctx.measureText(name).width > 900 &&
+            size > 40
+        ) {
+            size--;
             ctx.font = `${size}px Elven`;
+        }
 
-            while (
-                ctx.measureText(name).width > 900 &&
-                size > 40
-            ) {
-                size--;
-                ctx.font = `${size}px Elven`;
-            }
+        ctx.fillStyle = "#3a2b22";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
 
-            ctx.fillStyle = "#3a2b22";
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
+        ctx.fillText(
+            name,
+            canvas.width / 2,
+            560
+        );
 
-            ctx.fillText(
-                name,
-                canvas.width / 2,
-                560
-            );
+        // Genera il PDF
+        const { jsPDF } = window.jspdf;
 
-            const dataUrl = canvas.toDataURL("image/png");
+        const pdf = new jsPDF({
+            orientation: "landscape",
+            unit: "px",
+            format: [canvas.width, canvas.height]
+        });
 
-            const isIOS =
-                /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-                (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+        pdf.addImage(
+            canvas.toDataURL("image/png"),
+            "PNG",
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
 
-            if (isIOS) {
-
-                window.open(dataUrl, "_blank");
-
-            } else {
-
-                const link = document.createElement("a");
-                link.download = `Certificato - ${name}.png`;
-                link.href = dataUrl;
-                link.click();
-
-            };
-
-        };
-
-        image.onerror = () => {
-            alert("Errore nel caricamento del certificato.");
-        };
-
-        image.src = "download/certificato.png";
+        pdf.save(`Certificato - ${name}.pdf`);
 
     } catch (err) {
 
         console.error(err);
-        alert(err.message);
+        alert("Errore durante la generazione del certificato.");
 
     }
 
