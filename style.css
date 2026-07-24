@@ -153,7 +153,7 @@ h1 {
     width: 280px;
     height: 72px;
 
-    margin-top: 40px;
+    margin-top: 30px;
 
     font-family: "Nymeria";
     font-size: 20px;
@@ -499,7 +499,7 @@ a button {
         justify-content: flex-start;
         align-items: center;
 
-        padding-top: 120px;
+        padding-top: 180px;
 
     }
 
@@ -509,7 +509,7 @@ a button {
 
 
     .start-screen h1 {
-        font-size: 50px
+        font-size: 40px
     }
 
     .start-screen p {
@@ -539,16 +539,19 @@ a button {
 
     #startButton {
 
-        min-width: 280px;
-        width: 280px;
-        height: 72px;
-        font-family: "Nymeria";
-        font-size: 14px;
-        letter-spacing: 8px;
+    min-width: 200px;
+    width: 200px;
+    height: 64px;
 
-        animation: pulse 3s infinite;
+    margin-top: 30px;
 
-    }
+    font-family: "Nymeria";
+    font-size: 14px;
+    letter-spacing: 6px;
+
+    animation: pulse 3s infinite;
+
+}
 
     .progress-text {
         font: 300 10px Arial;
