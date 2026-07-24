@@ -3,32 +3,73 @@ let ans = new Array(questions.length).fill(null);
 
 const app = document.getElementById("app");
 
-function transition(render) {
-    app.style.opacity = "0";
-    app.style.transform = "translateY(20px)";
+
+const backgrounds = {
+    home: "assets/bg1.png",
+    quiz: "assets/bg2.png",
+    result: "assets/bg3.png"
+};
+
+
+function changeBackground(scene) {
+
+    const fade = document.getElementById("bgFade");
+
+    fade.style.background =
+        `radial-gradient(circle at center,
+                rgba(255,255,255,.02) 0%,
+                rgba(255,255,255,0) 40%),
+             linear-gradient(rgba(0,0,0,.55),
+                rgba(0,0,0,.80)),
+             url("${backgrounds[scene]}")`;
+
+    fade.style.backgroundSize = "cover";
+    fade.style.backgroundPosition = "center center";
+    fade.style.backgroundRepeat = "no-repeat";
+
+    fade.style.opacity = "1";
+
     setTimeout(() => {
-        render();
-        app.style.opacity = "1";
-        app.style.transform = "translateY(0)";
-    }, 250);
+        document.body.style.setProperty(
+            "--bg",
+            `url("${backgrounds[scene]}")`
+        );
+    }, 500);
+
+    setTimeout(() => {
+        fade.style.opacity = "0";
+    }, 550);
+
 }
+
+
 
 function startScreen() {
+
+    document.body.className = "home";
+    changeBackground("home");
+
     app.innerHTML = `
-    <div class="start-screen">
-        <h1>TEST FINALE</h1>
-        <p>
-            Rispondi correttamente per otterrenere il<br>
-            Certificato di Stregoneria!
-        </p>
-        <button id="startButton">INIZIA</button>
-    </div>`;
+        <div class="start-screen">
+            <h1>TEST FINALE</h1>
+            <p>
+                Rispondi correttamente per otterrenere il<br>
+                Certificato di Stregoneria!
+            </p>
+            <button id="startButton">INIZIA</button>
+        </div>`;
 
     document.getElementById("startButton").onclick = () => {
+
+        document.body.className = "quiz";
+        changeBackground("quiz");
+
         i = 0;
-        transition(draw);
+        draw();
+
     };
 }
+
 
 function draw() {
 
@@ -84,7 +125,7 @@ function draw() {
         }
 
         i++;
-        transition(draw);
+        draw();
 
     };
 
@@ -99,7 +140,7 @@ function draw() {
 
         if (i > 0) {
             i--;
-            transition(draw);
+            draw();
         }
 
     };
@@ -113,6 +154,9 @@ function draw() {
 
 function showLoading() {
 
+    document.body.className = "result";
+    changeBackground("result");
+
     app.innerHTML = `
         <div class="loading-screen">
             <div class="magic-loader">
@@ -125,20 +169,18 @@ function showLoading() {
     app.style.opacity = "0";
 
     requestAnimationFrame(() => {
-
         app.style.opacity = "1";
-
     });
 
     setTimeout(() => {
-
-        transition(end);
-
+        end();
     }, 2500);
 
 }
 
 function end() {
+    document.body.className = "result";
+    changeBackground("result");
 
     let score = 0;
 
@@ -200,10 +242,15 @@ function end() {
         </div>`;
 
         document.getElementById("retryButton").onclick = () => {
+
+            document.body.className = "home";
+            changeBackground("home");
+
             i = 0;
             ans = new Array(questions.length).fill(null);
-            transition(startScreen);
+            startScreen();
         };
+
     }
 }
 
@@ -330,5 +377,10 @@ async function generateCertificate() {
 }
 
 app.style.transition = "opacity .25s ease, transform .25s ease";
+
+document.body.className = "home";
+changeBackground("home");
+
 startScreen();
+
 

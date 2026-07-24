@@ -24,6 +24,7 @@ html {
     scroll-behavior: smooth
 }
 
+
 body {
     min-height: 100dvh;
     display: flex;
@@ -34,7 +35,7 @@ body {
     color: #F6F1EB;
     font-family: Arial, sans-serif;
     background: #000;
-    position: relative
+    position: relative;
 }
 
 body::before {
@@ -47,9 +48,8 @@ body::before {
         radial-gradient(circle at center,
             rgba(255, 255, 255, .02) 0%,
             rgba(255, 255, 255, 0) 40%),
-        linear-gradient(rgba(0, 0, 0, .55),
-            rgba(0, 0, 0, .80)),
-        url("assets/background.png");
+        linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .80)),
+        var(--bg);
 
     background-repeat: no-repeat;
     background-size: cover;
@@ -58,15 +58,52 @@ body::before {
     animation: backgroundMove 5s ease-in-out infinite alternate;
 }
 
+body {
+    --bg: url("assets/bg1.png");
+}
+
+body.home {
+    --bg: url("assets/bg1.png");
+}
+
+body.quiz {
+    --bg: url("assets/bg2.png");
+}
+
+body.result {
+    --bg: url("assets/bg3.png");
+}
+
 @keyframes backgroundMove {
 
-    0% {
-        transform: scale(1) translate(0, 0);
+    from {
+        transform: scale(1);
     }
 
-    100% {
-        transform: scale(1.08) translate(0px, 0px);
+    to {
+        transform: scale(1.08);
     }
+
+}
+
+#bgFade {
+
+    position: fixed;
+    inset: -3%;
+
+    z-index: -1;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+
+    transition: opacity 1s ease;
+
+    animation: backgroundMove 5s ease-in-out infinite alternate;
 
 }
 
@@ -146,6 +183,7 @@ h2 {
 
 .answer {
     display: block;
+    letter-spacing: 1px;
     width: 100%;
     max-width: 650px;
     margin: 18px auto;
@@ -393,15 +431,15 @@ a button {
 
 }
 
-.aspetta{
+.aspetta {
 
-    margin-top:16px;
+    margin-top: 16px;
 
-    opacity:0;
+    opacity: 0;
 
-    transform:translateY(8px);
+    transform: translateY(8px);
 
-    pointer-events:none;
+    pointer-events: none;
 
     transition:
         opacity .5s ease,
@@ -409,13 +447,35 @@ a button {
 
 }
 
-.aspetta.show{
+.aspetta.show {
 
-    opacity:1;
+    opacity: 1;
 
-    transform:translateY(0);
+    transform: translateY(0);
 
 }
+
+.site-footer{
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 1000;
+
+    font-family: "Maginia";
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 1px;
+
+    color: rgba(255,255,255,.55);
+
+    background: transparent;
+    pointer-events: none;
+
+    user-select: none;
+}
+
 
 @media(max-width:768px) {
 
@@ -498,5 +558,11 @@ a button {
         margin-top: 20px;
 
     }
+
+    .site-footer{
+        bottom: 10px;
+        font-size: 10px;
+    }
+
 
 }
